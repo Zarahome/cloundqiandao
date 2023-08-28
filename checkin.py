@@ -16,8 +16,8 @@ class CheckIn(object):
                 "&clientType=TELEANDROID&version=8.6.3&model=SM-G930K")
 
     def __init__(self, username, password):
-        self.username = username
-        self.password = password
+        self.username = 19103261131
+        self.password = n19950815
 
     def check_in(self):
         self.login()
@@ -37,9 +37,9 @@ class CheckIn(object):
         response = self.client.get(self.sign_url % rand, headers=headers)
         net_disk_bonus = response.json()["netdiskBonus"]
         if response.json()["isSign"] == "false":
-            print(f"未签到，签到获得{net_disk_bonus}M空间")
+Print(f "If you don't sign in, sign in and get {net_disk_bonus}M space")print(F "If you don't sign in, sign in and get it.{net_disk_bonus}M space ")
         else:
-            print(f"已经签到过了，签到获得{net_disk_bonus}M空间")
+Print(f "has been checked in, and you will get {net_disk_bonus}M space").print(F "has been signed in, signed in to get it.{net_disk_bonus}M space ")
         headers = {
             "User-Agent": "Mozilla/5.0 (Linux; Android 5.1.1; SM-G930K Build/NRD90M; wv) "
                           "AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0"
@@ -55,13 +55,13 @@ class CheckIn(object):
             print(response.text)
         else:
             prize_name = (response.json() or {}).get("prizeName")
-            print(f"抽奖获得{prize_name}")
+Print(f "lucky draw won {prize_name}")print(F "lucky draw{prize_name}")
         response = self.client.get(url2, headers=headers)
         if "errorCode" in response.text:
             print(response.text)
         else:
             prize_name = (response.json() or {}).get("prizeName")
-            print(f"抽奖获得{prize_name}")
+Print(            print(f"抽奖获得{prize_name}"))print(F "lucky draw{prize_name}")
 
     @staticmethod
     def rsa_encode(rsa_key, string):
@@ -95,7 +95,7 @@ class CheckIn(object):
         }
         r = self.client.post(self.submit_login_url, data=data, headers=headers, timeout=5)
         print(r.json()["msg"])
-        if '图形验证码错误' in r.json()["msg"]:
+        if Error in graphic verification code' in r.json()["msg"]:
             raise Exception("账户需输入验证码，请手动在app登录一次或修改密码后重试脚本")
         redirect_url = r.json()["toUrl"]
         self.client.get(redirect_url)
@@ -138,9 +138,9 @@ def b64_to_hex(a):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='天翼云签到脚本')
-    parser.add_argument('--username', type=str, help='账号')
-    parser.add_argument('--password', type=str, help='密码')
+    parser = argparse.ArgumentParser(description=Tianyiyun Sign-in Script')
+    parser.add_argument('--username', type=str, help=Account number')
+    parser.add_argument('--password', type=str, help=Password')
     args = parser.parse_args()
     helper = CheckIn(args.username, args.password)
     helper.check_in()
